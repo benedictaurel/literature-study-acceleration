@@ -616,6 +616,12 @@ class RAGEngine:
         file_path = os.path.join(paper_dir, filename)
         
         try:
+            # Fix common double-backslash issues from LLM (e.g. \\documentclass -> \documentclass)
+            # We replace \\ followed by a letter with \ followed by that letter.
+            # This avoids breaking \\ (newline) which is usually followed by space or non-letter.
+            import re
+            content = re.sub(r'\\\\([a-zA-Z])', r'\\\1', content)
+
             if action == "append":
                 if not os.path.exists(file_path):
                     return f"ERROR: Cannot append to {filename} because it does not exist. Use action='overwrite' to create it first."
