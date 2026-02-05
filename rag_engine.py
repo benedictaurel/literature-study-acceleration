@@ -106,7 +106,7 @@ class RAGEngine:
         if self.vectorstore_text is None:
              pass
 
-    def initialize_vector_store(self, db_path=None, folder_path="./papers", process_new=False):
+    def initialize_vector_store(self, db_path=None, folder_path="./paper/papers", process_new=False):
         """
         Initializes the vector store in-memory using MultimodalPDFLoader.
         Scans values in folder_path.
@@ -386,10 +386,10 @@ class RAGEngine:
                         # Sanitize filename
                         safe_title = "".join(x for x in title if x.isalnum() or x in " _-")[:50]
                         filename = f"openalex_{safe_title}.pdf"
-                        path = os.path.join("./papers", filename)
+                        path = os.path.join("./paper/papers", filename)
                         
-                        if not os.path.exists("./papers"):
-                            os.makedirs("./papers")
+                        if not os.path.exists("./paper/papers"):
+                            os.makedirs("./paper/papers")
                         
                         # Check exist
                         if os.path.exists(path):
@@ -476,16 +476,16 @@ class RAGEngine:
                     title = r.title
                     safe_title = "".join(x for x in title if x.isalnum() or x in " _-")[:50]
                     filename = f"arxiv_{safe_title}.pdf"
-                    path = os.path.join("./papers", filename)
+                    path = os.path.join("./paper/papers", filename)
                     
-                    if not os.path.exists("./papers"):
-                        os.makedirs("./papers")
+                    if not os.path.exists("./paper/papers"):
+                        os.makedirs("./paper/papers")
                         
                     if os.path.exists(path):
                         print(f"File exists, skipping download: {path}")
                         downloaded_infos.append(f"Found local: {title}")
                     else:
-                        r.download_pdf(dirpath="./papers", filename=filename)
+                        r.download_pdf(dirpath="./paper/papers", filename=filename)
                         downloaded_infos.append(f"Downloaded: {title}")
                         
                         # --- AUTOMATIC BIBTEX GENERATION ---
@@ -550,8 +550,8 @@ class RAGEngine:
                 return "ORAN_SCRAPER_EMPTY: No specifications found to download for this query."
             
             # Re-index to include new files
-            # We need to re-scan the ./papers directory (which includes ./papers/O-RAN)
-            self.initialize_vector_store(folder_path="./papers") 
+            # We need to re-scan the ./paper/papers directory (which includes ./paper/papers/O-RAN)
+            self.initialize_vector_store(folder_path="./paper/papers") 
             
             return f"ORAN_SCRAPER_SUCCESS: Downloaded and indexed the following specifications: {', '.join([os.path.basename(f) for f in downloaded])}. You can now answer questions based on these documents."
         except Exception as e:

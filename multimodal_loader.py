@@ -78,7 +78,7 @@ MATH_GLYPH_MAP = {
 
 
 class MultimodalPDFLoader:
-    def __init__(self, file_path: str, image_output_dir: str = "./extracted_images"):
+    def __init__(self, file_path: str, image_output_dir: str = "./paper/extracted_images"):
         self.file_path = file_path
         self.image_output_dir = image_output_dir
         if not os.path.exists(self.image_output_dir):

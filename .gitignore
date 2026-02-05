@@ -1,2 +1,8 @@
 __pycache__
+
+# Remove .env
 .env
+
+# Exclude Files in ./paper/extracted_images
+# Nested Paper Repository
+paper/
