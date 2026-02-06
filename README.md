@@ -9,7 +9,7 @@ A comprehensive toolkit for accelerating literature study, featuring a RAG-power
 -   **Hybrid Retrieval**: Combines local document search with external academic databases.
 -   **Sources**:
     -   **Local**: Uploaded PDFs in the `paper/` directory.
-    -   **External**: OpenAlex, ArXiv, Semantic Scholar.
+    -   **External**: OpenAlex, ArXiv.
 
 ### 2. O-RAN Scraper
 -   **Automated Download**: Scrapes and downloads O-RAN specifications.
