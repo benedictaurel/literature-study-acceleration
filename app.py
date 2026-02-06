@@ -33,8 +33,8 @@ with st.sidebar:
     files_placeholder = st.empty()
     
     def update_file_list():
-        if os.path.exists("./papers"):
-            files = [f for f in os.listdir("./papers") if f.endswith(".pdf")]
+        if os.path.exists("./paper/papers"):
+            files = [f for f in os.listdir("./paper/papers") if f.endswith(".pdf")]
             if files:
                 files_placeholder.markdown("\n".join([f"- {f}" for f in files]))
             else:
@@ -54,7 +54,7 @@ with st.sidebar:
         else:
             with st.spinner("Processing documents..."):
                 # Ensure papers directory exists
-                papers_dir = "./papers"
+                papers_dir = "./paper/papers"
                 if not os.path.exists(papers_dir):
                     os.makedirs(papers_dir)
                 

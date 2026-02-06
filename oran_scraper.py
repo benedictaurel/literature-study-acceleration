@@ -12,7 +12,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class ORANScraper:
-    def __init__(self, download_dir="./papers"):
+    def __init__(self, download_dir="./paper/papers"):
         self.download_dir = os.path.abspath(download_dir)
         if not os.path.exists(self.download_dir):
             os.makedirs(self.download_dir)

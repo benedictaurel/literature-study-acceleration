@@ -816,7 +816,16 @@ class RAGEngine:
             
             # Handle case where content is a list (multi-part response)
             if isinstance(content, list):
-                content = "\n".join(str(item) for item in content)
+                parsed_parts = []
+                for item in content:
+                    if isinstance(item, dict):
+                        if "text" in item:
+                            parsed_parts.append(item["text"])
+                    elif isinstance(item, str):
+                        parsed_parts.append(item)
+                    else:
+                        parsed_parts.append(str(item))
+                content = "\n".join(parsed_parts)
             
             if content and isinstance(content, str) and content.strip():
                 return content
